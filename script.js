@@ -4,6 +4,7 @@ let signup_form = document.querySelector("#sign_up");
 let submitButton = document.querySelector("button[type='submit']");
 let editingFlightId = null;
 
+
 function sign_up(event){
     event.preventDefault();
     let usernameInput = document.querySelector("#username");
@@ -122,8 +123,23 @@ function add_flight(flight_id, airline_name, departure_at, departure_date, arriv
             <td>${first_class_seat}</td>
         </tr>
     `
+    // emp
+    let row_dis_infor_flight_emp = `
+        <tr id="${flight_id}-row_dis_infor_flight_emp">
+            <td>${flight_id}</td>
+            <td>${departure_at}</td>
+            <td>${departure_date}</td>
+            <td>${arrival_at}</td>
+            <td>${arrival_date}</td>
+            <td>${economy_seat}</td>
+            <td>${business_seat}</td>
+            <td>${first_class_seat}</td>
+            <td><button class="bookTicket-btn" role="button">Book</button></td>
+        </tr>
+    `
     document.getElementById("get_input_admin").innerHTML += row_get_input_admin;
     document.getElementById("dis_infor_admin").innerHTML += row_dis_infor_admin;
+    document.getElementById("emp_tbl_flight_get_from_admin").innerHTML += row_dis_infor_flight_emp; //emp
 }
 
 
@@ -173,23 +189,43 @@ function update_flight(flight_id, airline_name, departure_at, departure_date, ar
         <td>${business_seat}</td>
         <td>${first_class_seat}</td>
     `;
+    // emp
+    let row_dis_infor_flight_emp = document.getElementById(`${flight_id}-row_dis_infor_flight_emp`);
+    row_dis_infor_flight_emp.innerHTML = `
+        <td>${flight_id}</td>
+        <td>${departure_at}</td>
+        <td>${departure_date}</td>
+        <td>${arrival_at}</td>
+        <td>${arrival_date}</td>
+        <td>${economy_seat}</td>
+        <td>${business_seat}</td>
+        <td>${first_class_seat}</td>
+        <td><button class="bookTicket-btn" role="button">Book</button></td>
+    `;
 }
 
 // ===delete===
 function delete_flight(flight_id){
     let flight_get_input_admin = document.getElementById(flight_id + "-row_get_input_admin");
     let flight_dis_infor_admin = document.getElementById(flight_id + "-row_dis_infor_admin");
+    //emp
+    let flight_dis_infor_flight_emp = document.getElementById(flight_id + "-row_dis_infor_flight_emp");
 
     if(flight_dis_infor_admin) flight_dis_infor_admin.remove();
     if(flight_get_input_admin) flight_get_input_admin.remove();
+    //emp
+    if(flight_dis_infor_flight_emp) flight_dis_infor_flight_emp.remove();
 }
 
 // ====search====
-const originalTableData = [...document.getElementById('dis_infor_admin').rows].map(row => row.innerHTML);
+
+
 function searchTable(){
-    let input = document.getElementById("searchInput");
-    let filter = input.value.toUpperCase();
-    let table = document.getElementById("tbl_dis_infor_admin");
+    const originalTableData = [...document.getElementById('dis_infor_admin').rows].map(row => row.innerHTML);
+    console.log(originalTableData);
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("tbl_dis_infor_admin");
     const tr = table.getElementsByTagName("tr");
     if (!filter) {
         resetTable();
@@ -208,8 +244,16 @@ function searchTable(){
             }
         }
     }
+    function resetTable() {
+        const tableBody = document.getElementById('dis_infor_admin');
+        tableBody.innerHTML = originalTableData.map(row => `<tr id="${flight_id}-row_dis_infor_admin">${row}</tr>`).join('');
+    }
+    document.getElementById("searchInput").addEventListener("input", function() {
+        if (this.value === '') {
+            resetTable();
+        }
+    });
 }
-function resetTable() {
-    const tableBody = document.getElementById('tbl_dis_infor_admin');
-    tableBody.innerHTML = originalTableData.map(row => `<tr>${row}</tr>`).join('');
-}
+
+
+
