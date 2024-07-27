@@ -90,66 +90,75 @@
                         <div class="wrapper">
                             <div class="card p-4 bg-white">
                                 <h3>Create Flight</h3>
-                                <form id="flightForm" onsubmit="create_flight(event)">
+                                <form onsubmit="create_flight(event)" id="form_flight">
                                     <div class="row px-2">
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="airline-name" class="form-label">Airline Name</label>
-                                                <input type="text" id="airline-name" class="form-control" placeholder="Airline Name">
+                                                <input type="text" id="airline-name" class="form-control"
+                                                    placeholder="AirLine Name">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="flight-id" class="form-label">Flight Number</label>
-                                                <input type="text" class="form-control" placeholder="Flight Number" id="flight-id">
+                                                <input type="text" class="form-control" placeholder="FLight Number"
+                                                    id="flight-id">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="departure-at" class="form-label">Departure Airport</label>
-                                                <input type="text" class="form-control" placeholder="Departure Airport" id="departure-at">
+                                                <input type="text" class="form-control" placeholder="Departure At"
+                                                    id="departure-at">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="departure-date" class="form-label">Departure Date</label>
-                                                <input type="text" class="form-control" placeholder="Departure Date" id="departure-date">
+                                                <input type="text" class="form-control" placeholder="Departure Date"
+                                                    id="departure-date">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="arrival-at" class="form-label">Arrival Airport</label>
-                                                <input type="text" class="form-control" placeholder="Arrival Airport" id="arrival-at">
+                                                <input type="text" class="form-control" placeholder="Departure At"
+                                                    id="arrival-at">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="arrival-date" class="form-label">Arrival Date</label>
-                                                <input type="text" class="form-control" placeholder="Arrival Date" id="arrival-date">
+                                                <input type="text" class="form-control" placeholder="Arrival Date"
+                                                    id="arrival-date">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="economy" class="form-label">Economy Seats</label>
-                                                <input type="text" class="form-control" placeholder="Economy Seats" id="economy">
+                                                <label for="economy" class="form-label">Economy Seat</label>
+                                                <input type="text" class="form-control" placeholder="Economy Seat"
+                                                    id="economy">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="business" class="form-label">Business Seats</label>
-                                                <input type="text" class="form-control" placeholder="Business Seats" id="business">
+                                                <label for="business" class="form-label">Business Seat</label>
+                                                <input type="text" class="form-control" placeholder="Business Seat"
+                                                    id="business">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <label for="first-class" class="form-label">First Class Seats</label>
-                                                <input type="text" class="form-control" placeholder="First Class Seats" id="first-class">
+                                                <label for="first-class" class="form-label">First Class Seat</label>
+                                                <input type="text" class="form-control" placeholder="First Class Seat"
+                                                    id="first-class">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-3 d-flex flex-column">
-                                                <label for="note" class="form-label">General Note</label>
-                                                <textarea class="form-control" id="note" rows="5" placeholder="General Note"></textarea>
+                                                <label for="" class="form-label">General Note</label>
+                                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="General Note"></textarea>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-end">
@@ -157,7 +166,6 @@
                                         </div>
                                     </div>
                                 </form>
-                                
                                 <h3>Flight Information</h3>
                                 <table class="table table-striped information-wrapper mt-3">
                                     <thead>
@@ -217,7 +225,7 @@
                                             <th>Fist Class Seat</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="dis_infor_admin">
                                         <tr>
                                             <td>1</td>
                                             <td>Cocacola</td>

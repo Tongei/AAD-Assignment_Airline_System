@@ -57,30 +57,33 @@ let first_class_seat = document.getElementById("first-class");
 let note = document.getElementById("note");
 
 
-// Function to handle flight creation
-function create_flight(event) {
-    event.preventDefault(); // Prevent the default form submission
+function create_flight(event){
+    event.preventDefault();
+    let v_airline_name = airline_name.value;
+    let v_flight_id = flight_id.value;
+    let v_departure_at = departure_at.value;
+    let v_departure_date = departure_date.value;
+    let v_arrival_at = arrival_at.value;
+    let v_arrival_date = arrival_date.value;
+    let v_economy_seat =economy_seat.value;
+    let v_business_seat = business_seat.value;
+    let v_first_class_seat = first_class_seat.value;
 
-    // Get form values
-    let v_airline_name = document.getElementById('airline-name').value;
-    let v_flight_id = document.getElementById('flight-id').value;
-    let v_departure_at = document.getElementById('departure-at').value;
-    let v_departure_date = document.getElementById('departure-date').value;
-    let v_arrival_at = document.getElementById('arrival-at').value;
-    let v_arrival_date = document.getElementById('arrival-date').value;
-    let v_economy_seat = document.getElementById('economy').value;
-    let v_business_seat = document.getElementById('business').value;
-    let v_first_class_seat = document.getElementById('first-class').value;
+    add_flight(v_flight_id, v_airline_name, v_departure_at, v_departure_date, v_arrival_at, v_arrival_date, v_economy_seat, v_business_seat, v_first_class_seat)
+    // v_airline_name = '';
+    // v_flight_id = '';
+    // v_departure_at = '';
+    // v_departure_date = '';
+    // v_arrival_at = '';
+    // v_arrival_date = '';
+    // v_economy_seat = '';
+    // v_business_seat = '';
+    // v_first_class_seat = '';
 
-    // Add flight details to the table
-    add_flight(v_flight_id, v_airline_name, v_departure_at, v_departure_date, v_arrival_at, v_arrival_date, v_economy_seat, v_business_seat, v_first_class_seat);
-
-    // Reset the form after submission
-    document.getElementById('flightForm').reset();
+    document.querySelector('#form_flight').reset();
 }
 
-// Function to add flight details to the table
-function add_flight(flight_id, airline_name, departure_at, departure_date, arrival_at, arrival_date, economy_seat, business_seat, first_class_seat) {
+function add_flight(flight_id, airline_name, departure_at, departure_date, arrival_at, arrival_date, economy_seat, business_seat, first_class_seat){
     let row_get_input_admin = `
         <tr id="${flight_id}-row_get_input_admin">
             <td>${flight_id}</td>
@@ -91,9 +94,8 @@ function add_flight(flight_id, airline_name, departure_at, departure_date, arriv
             <td>${arrival_date}</td>
             <td>
                 <button class="bookTicket-btn" role="button">Edit</button>
-                <button class="bookTicket-btn" role="button" onclick="delete_flight('${flight_id}')">
-                    <i class="fa-solid fa-xmark pe-1"></i>Delete
-                </button>
+                <button class="bookTicket-btn " role="button" onclick="delete_flight('${flight_id}')"><i
+                    class="fa-solid fa-xmark pe-1"></i>Delete</button>
             </td>
         </tr>
     `;
@@ -110,22 +112,21 @@ function add_flight(flight_id, airline_name, departure_at, departure_date, arriv
             <td>${business_seat}</td>
             <td>${first_class_seat}</td>
         </tr>
-    `;
-
+    `
     document.getElementById("get_input_admin").innerHTML += row_get_input_admin;
     document.getElementById("dis_infor_admin").innerHTML += row_dis_infor_admin;
-    document.getElementById('flightForm').reset();
 }
 
-// Function to delete flight details
-function delete_flight(flight_id) {
+
+// ===delete===
+
+function delete_flight(flight_id){
     let flight_get_input_admin = document.getElementById(flight_id + "-row_get_input_admin");
     let flight_dis_infor_admin = document.getElementById(flight_id + "-row_dis_infor_admin");
 
-    if (flight_dis_infor_admin) flight_dis_infor_admin.remove();
-    if (flight_get_input_admin) flight_get_input_admin.remove();
+    if(flight_dis_infor_admin) flight_dis_infor_admin.remove();
+    if(flight_get_input_admin) flight_get_input_admin.remove();
 }
-
 
 // Edit Update btn
 
