@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fontawesome-free-6.5.1-web/css/all.css">
+    <link rel="stylesheet" href="library/css/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- =======================================ADMIN======================================= -->
+    <main>
+        <div class="container-fluid">
+            <section class="admin p-5">
+                <div class="profile d-flex justify-content-end">
+                    <button class="btn profile-acc d-flex justify-content-center align-items-center" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-pen"></i> Log as Admin</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="fa-solid fa-user-tie"></i> Log as Employee</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="intro-admin text-center">
+                    <div class="intro">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <h2>Airline Ticket Managment</h2>
+                        <span class="small fw-semibold">By efficiently managing these responsibilities and utilizing the
+                            right tools, administrators play a pivotal role
+                            in the success of airline operations.</span>
+                    </div>
+                </div>
+                <ul class="list-group flex-row justify-content-center">
+                    <li class="list-group-item ms-4 bg-transparent">
+                        <button class="nav-link active" id="create-flight-tab" data-bs-toggle="pill"
+                            data-bs-target="#create-flight" type="button" role="tab" aria-controls="create-flight"
+                            aria-selected="false">Create Flight</button>
+                    </li>
+                    <li class="list-group-item ms-4 bg-transparent">
+                        <button class="nav-link" id="display-flight-tab" data-bs-toggle="pill"
+                            data-bs-target="#display-flight" type="button" role="tab" aria-controls="display-flight"
+                            aria-selected="false">Display Information</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade active show" id="create-flight" role="tabpanel" aria-labelledby="create-flight-tab">
+                        <div class="wrapper">
+                            <div class="card p-4 bg-white">
+                                <h3>Create Flight</h3>
+                                <form action="">
+                                    <div class="row px-2">
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="airline-name" class="form-label">Airline Name</label>
+                                                <input type="text" id="airline-name" class="form-control"
+                                                    placeholder="AirLine Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="flight-id" class="form-label">Flight Number</label>
+                                                <input type="text" class="form-control" placeholder="FLight Number"
+                                                    id="flight-id">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="departure-at" class="form-label">Departure Airport</label>
+                                                <input type="text" class="form-control" placeholder="Departure At"
+                                                    id="departure-at">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="departure-date" class="form-label">Departure Date</label>
+                                                <input type="text" class="form-control" placeholder="Departure Date"
+                                                    id="departure-date">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="arrival-at" class="form-label">Arrival Airport</label>
+                                                <input type="text" class="form-control" placeholder="Departure At"
+                                                    id="arrival-at">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="mb-3">
+                                                <label for="arrival-date" class="form-label">Arrival Date</label>
+                                                <input type="text" class="form-control" placeholder="Arrival Date"
+                                                    id="arrival-date">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <label for="economy" class="form-label">Economy Seat</label>
+                                                <input type="text" class="form-control" placeholder="Economy Seat"
+                                                    id="economy">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <label for="business" class="form-label">Business Seat</label>
+                                                <input type="text" class="form-control" placeholder="Business Seat"
+                                                    id="business">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <label for="first-class" class="form-label">First Class Seat</label>
+                                                <input type="text" class="form-control" placeholder="First Class Seat"
+                                                    id="first-class">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="mb-3 d-flex flex-column">
+                                                <label for="" class="form-label">General Note</label>
+                                                <textarea class="form-control" name="note" id="note" rows="5" placeholder="General Note"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end">
+                                            <button class="btn sub-btn" type="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <h3>Flight Information</h3>
+                                <table class="table table-striped information-wrapper mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Airline Name</th>
+                                            <th>Depart-At</th>
+                                            <th>Depart-Date</th>
+                                            <th>Arrival-At</th>
+                                            <th>Arrival-Date</th>
+                                            <th>Action</th>    
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Cocacola</td>
+                                            <td>Phnom Penh</td>
+                                            <td>10-02-2024</td>
+                                            <td>Siem Reap</td>
+                                            <td>10-02-2024</td>
+                                            <td>
+                                                <button class="bookTicket-btn" role="button">Edit</button>
+                                                <button class="bookTicket-btn " role="button" id="delete-btn"><i
+                                                    class="fa-solid fa-xmark pe-1"></i>Delete</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="display-flight" role="tabpanel" aria-labelledby="display-flight">
+                        <div class="wrapper">
+                            <div class="card p-4 bg-white">
+                                <h3 class="border-0 m-0">Display Information</h3>
+                                <div class="mb-4 d-flex">
+                                    <div class="position-relative d-flex align-items-center w-50">
+                                        <input type="text" class="form-control search"
+                                            placeholder="Enter flight id">
+                                        <i class="fa-solid fa-magnifying-glass position-absolute ms-2"></i>
+                                    </div>
+                                    <button class="sub-btn ms-4">Search</button>
+                                </div>
+                                <!-- ================= -->
+                                <table class="table table-striped display-info">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Airline Name</th>
+                                            <th>Departure At</th>
+                                            <th>Departure Date</th>
+                                            <th>Arrival At</th>
+                                            <th>Arrival Date</th>
+                                            <th>Economy Seat</th>
+                                            <th>Business Seat</th>
+                                            <th>Fist Class Seat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Cocacola</td>
+                                            <td>Phnom Penh</td>
+                                            <td>10-08-2024</td>
+                                            <td>Siem Reap</td>
+                                            <td>10-08-2024</td>
+                                            <td>15</td>
+                                            <td>10</td>
+                                            <td>5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+        </div>
+    </main>
+
+
+
+
+
+    <script src="library/js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
+    <script>
+        const quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
+</body>
+
+</html>

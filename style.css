@@ -1,0 +1,222 @@
+body{
+    background-color: #EEEFF3!important;
+}
+.profile .profile-acc:hover{
+    background-color: rgb(228, 228, 228);
+    color: black;
+    transition-duration: 0.25s;
+}
+.profile .profile-acc{
+    font-size: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #dbdbdb;
+    border: 0;
+    color: #565656;
+}
+.profile .dropdown-menu li .dropdown-item:hover{
+    background-color: #EEEFF3;
+}
+.profile .dropdown-menu{
+    margin-top: 10px!important;
+    border: 0;
+    box-shadow: 0 1px 5px 3px #8080804a;
+}
+.profile .dropdown-menu li .dropdown-item{
+    padding-block: 6px;
+    font-size: 14px;
+    font-weight: 400;
+}
+.profile .dropdown-menu li .dropdown-item i{
+    font-size: 18px;
+    padding-right: 10px;
+}
+.side-setting{
+    background-color: white;
+}
+.side-setting .logo i{
+    font-size: 30px;
+    padding-right: 10px;
+    color: #195E84;
+}
+.col-3 .nav .nav-item .nav-link.active{
+    background-color: #EEEFF3;
+}
+.col-3 .nav .nav-item .nav-link{
+    margin-block: 2px;
+    padding: 8px;
+    width: 100%!important;
+    text-align: start;
+    border-radius: 5px;
+    font-weight: 500;
+    color: #195E84;
+}
+.col-3 .nav .nav-item .nav-link:hover{
+    background-color: #EEEFF3;
+}
+.deep-dropdown li{
+    list-style: none;
+    padding: 0!important;
+}
+.deep-dropdown li button{
+    padding-left: 40px!important;
+}
+.row .col-3.side-setting{
+    height: 100vh!important;
+}
+h2.content-title{
+    font-size: 27px; 
+    margin-bottom: 25px;
+    color: #195E84;
+}
+.wrapper .card h3{
+    font-weight: 500;
+    font-size: 21px;
+    border-bottom: 2px solid rgb(230, 230, 230);
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+    color: #404040;
+}
+.form-control{
+    border: 2px solid #e5e5e5;
+    font-size: 15px;
+}
+.form-control::placeholder{
+    color: rgb(207, 207, 207);
+}
+.form-control:focus{
+    box-shadow: none;
+    border: 2px solid #195E84;
+    box-shadow: 0 0 5px 2px #1e6d9847;
+}
+.form-label{
+    color: #0c4869;
+    font-weight: 500;
+}
+.sub-btn{
+    background-color: #195E84!important;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 0;
+}
+.sub-btn:hover, tbody tr td .bookTicket-btn:hover{
+    background-color: #3b799a!important;
+    transition-duration: 0.25s;
+}
+tbody tr td .bookTicket-btn{
+    background-color: #195E84;
+    color: white;
+    border: 0;
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.card .search{
+    padding-left: 30px!important;
+}
+.card div i{
+    color: #888888;
+}
+#delete-btn{
+    background-color: rgb(137, 0, 0);
+    padding-inline: 15px;
+}
+#delete-btn:hover{
+    background-color: rgb(172, 0, 0)!important;
+}
+.card .summary-title{
+    font-size: 17px;
+}
+.summary table tbody tr td{
+    font-size: 14px;
+}
+.information-wrapper thead tr th{
+    font-weight: 500;
+}
+.summary table thead tr th, .display-info thead tr th{
+    padding-block: 4px;
+    font-size: 14px;
+    font-weight: 500!important;
+}
+.summary table{
+    margin-top: 8px;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 2px rgba(57, 57, 57, 0.095);
+}
+.display-info tbody tr td{
+    font-size: 15px;
+}
+.list-group .list-group-item{
+    padding-inline: 0;
+    padding-block: 3px;
+    border: 0!important;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+.list-group .list-group-item .list-info{
+    color: #0c4869;
+    font-weight: 500;
+    width: 220px;
+}
+.list-group .list-group-item .total{
+    font-weight: 500;
+    color: red;
+    font-size: 17px;
+}
+/* ============================Log In Part=============== */
+.login-sect{
+    height: 100vh;
+}
+.login-sect .card{
+    width: 550px;
+}
+.login-sect .card h3{
+    color: #0c4869;
+}
+.login-sect .logo{
+    font-size: 40px;
+    color: #0c4869;
+}
+.login-sect form div i{
+    font-size: 22px;
+    color: #0c4869;
+    top: 8px;
+    left: 16px;
+}
+/* ==================Admin===================== */
+.admin .intro i{
+    font-size: 60px;
+    color: #0c4869;
+}
+.admin .intro h2{
+    font-weight: 700!important;
+    color: #0c4869;
+    margin: 0;
+    margin-top: 10px;
+}
+.admin .list-group .list-group-item button:hover{
+    background-color: #0c4869;
+    color: white;
+}
+.admin .list-group .list-group-item .active{
+    background-color: #0c4869;
+    color: white;
+}
+.admin .list-group .list-group-item button{
+    font-weight: 500;
+    padding: 7px 20px;
+    border-radius: 5px;
+    margin-top: 15px;   
+}
+.admin .tab-pane .wrapper{
+    width: 65%;
+    margin: auto;
+    margin-top: 30px;
+}
+.tab-pane .wrapper .card{
+    background-color: rgb(255, 255, 255)!important;
+}
