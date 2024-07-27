@@ -127,10 +127,6 @@ function add_flight(flight_id, airline_name, departure_at, departure_date, arriv
 }
 
 
-// ===delete===
-
-
-
 // Edit Update btn
 function edit_flight(flight_id){
     editingFlightId = flight_id;
@@ -179,10 +175,41 @@ function update_flight(flight_id, airline_name, departure_at, departure_date, ar
     `;
 }
 
+// ===delete===
 function delete_flight(flight_id){
     let flight_get_input_admin = document.getElementById(flight_id + "-row_get_input_admin");
     let flight_dis_infor_admin = document.getElementById(flight_id + "-row_dis_infor_admin");
 
     if(flight_dis_infor_admin) flight_dis_infor_admin.remove();
     if(flight_get_input_admin) flight_get_input_admin.remove();
+}
+
+// ====search====
+const originalTableData = [...document.getElementById('dis_infor_admin').rows].map(row => row.innerHTML);
+function searchTable(){
+    let input = document.getElementById("searchInput");
+    let filter = input.value.toUpperCase();
+    let table = document.getElementById("tbl_dis_infor_admin");
+    const tr = table.getElementsByTagName("tr");
+    if (!filter) {
+        resetTable();
+        return;
+    }
+
+    for (let i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none";
+        const td = tr[i].getElementsByTagName("td");
+        for (let j = 0; j < td.length; j++) {
+            if (td[j]) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                }
+            }
+        }
+    }
+}
+function resetTable() {
+    const tableBody = document.getElementById('tbl_dis_infor_admin');
+    tableBody.innerHTML = originalTableData.map(row => `<tr>${row}</tr>`).join('');
 }

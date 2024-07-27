@@ -205,13 +205,13 @@
                                 <div class="mb-4 d-flex">
                                     <div class="position-relative d-flex align-items-center w-50">
                                         <input type="text" class="form-control search"
-                                            placeholder="Enter flight id">
+                                            placeholder="Enter flight id" id="searchInput">
                                         <i class="fa-solid fa-magnifying-glass position-absolute ms-2"></i>
                                     </div>
-                                    <button class="sub-btn ms-4">Search</button>
+                                    <button class="sub-btn ms-4" onclick="searchTable()">Search</button>
                                 </div>
                                 <!-- ================= -->
-                                <table class="table table-striped display-info">
+                                <table id="tbl_dis_infor_admin" class="table table-striped display-info">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
