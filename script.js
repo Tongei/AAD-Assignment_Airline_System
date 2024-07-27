@@ -255,5 +255,49 @@ function searchTable(){
     });
 }
 
+// search flight publish
+document.getElementById('flightSearchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
+    let departure = document.getElementById('departure').value.toLowerCase();
+    let arrival = document.getElementById('arrival').value.toLowerCase();
+    let departDate = document.getElementById('depart-date').value;
+    let arrivalDate = document.getElementById('arrival-date').value;
 
+    filterTable(departure, arrival, departDate, arrivalDate);
+});
+
+function filterTable(departure, arrival, departDate, arrivalDate) {
+    let table = document.getElementById('main_emp_tbl_flight_get_from_admin');
+    let rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        let depCell = cells[1].textContent.toLowerCase();
+        let arrCell = cells[3].textContent.toLowerCase();
+        let depDateCell = cells[2].textContent;
+        let arrDateCell = cells[4].textContent;
+
+        if (
+            (departure === '' || depCell.includes(departure)) &&
+            (arrival === '' || arrCell.includes(arrival)) &&
+            (departDate === '' || depDateCell === departDate) &&
+            (arrivalDate === '' || arrDateCell === arrivalDate)
+        ) {
+            rows[i].style.display = '';
+        } else {
+            rows[i].style.display = 'none';
+        }
+    }
+}
+
+// Add an event listener to reset the table when inputs are cleared
+document.getElementById('flightSearchForm').addEventListener('reset', function() {
+    let table = document.getElementById('main_emp_tbl_flight_get_from_admin');
+    let rows = table.getElementsByTagName('tr');
+
+    // Show all rows
+    for (let i = 1; i < rows.length; i++) {
+        rows[i].style.display = '';
+    }
+});
