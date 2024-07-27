@@ -3,7 +3,9 @@ let emp_action = document.querySelector("#main_emp");
 let signup_form = document.querySelector("#sign_up");
 let submitButton = document.querySelector("button[type='submit']");
 let editingFlightId = null;
-
+const first_class_price = 150;
+const business_price = 90;
+const economy_price = 70;
 
 function sign_up(event){
     event.preventDefault();
@@ -92,8 +94,9 @@ function create_flight(event){
     document.querySelector('#form_flight').reset();
 }
 
+
 function add_flight(flight_id, airline_name, departure_at, departure_date, arrival_at, arrival_date, economy_seat, business_seat, first_class_seat){
-    
+    let total_price = eval((economy_price * economy_seat)+(business_price * business_seat)+(first_class_price * first_class_seat));
     let row_get_input_admin = `
         <tr id="${flight_id}-row_get_input_admin">
             <td>${flight_id}</td>
@@ -137,9 +140,23 @@ function add_flight(flight_id, airline_name, departure_at, departure_date, arriv
             <td><button class="bookTicket-btn" role="button">Book</button></td>
         </tr>
     `
+    let row_emp_flight_with_price = `
+                        <tr>
+                            <td>${flight_id}</td>
+                            <td>${departure_at}</td>
+                            <td>${departure_date}</td>
+                            <td>${arrival_at}</td>
+                            <td>${arrival_date}</td>
+                            <td>${economy_seat}</td>
+                            <td>${business_seat}</td>
+                            <td>${first_class_seat}</td>
+                            <td>${total_price}$</td>
+                        </tr>
+    `;
     document.getElementById("get_input_admin").innerHTML += row_get_input_admin;
     document.getElementById("dis_infor_admin").innerHTML += row_dis_infor_admin;
     document.getElementById("emp_tbl_flight_get_from_admin").innerHTML += row_dis_infor_flight_emp; //emp
+    document.getElementById("emp_flight_with_price").innerHTML += row_emp_flight_with_price;
 }
 
 
@@ -301,3 +318,61 @@ document.getElementById('flightSearchForm').addEventListener('reset', function()
         rows[i].style.display = '';
     }
 });
+
+// =======crud-passenger====
+let passenger_id = document.getElementById("passenger_id");
+let first_name = document.getElementById("first-name");
+let last_name = document.getElementById("last-name");
+let dob = document.getElementById("dob");
+let p_nationality = document.getElementById("nationality");
+let p_male = document.getElementById("male");
+let p_female = document.getElementById("female");
+let p_email = document.getElementById("passenger_email");
+let p_phone = document.getElementById("phone_number");
+let p_address = document.getElementById("passenger_address");
+let p_country = document.getElementById("passenger_country");
+let postal = document.getElementById("postal");
+let get_flight_id = document.getElementById("get_flight_id");
+let p_seat_type = document.getElementById("passenger_seat_type");
+let p_seat_number = document.getElementById("passenger_seat_number");
+
+function create_passenger(){
+    let gender = '';
+    let v_passenger_id = passenger_id.value;
+    let v_first_name = first_name.value;
+    let v_last_name = last_name.value;
+    let v_dob = dob.value;
+    let v_p_nationality = p_nationality.value;
+    let v_p_email = p_email.value;
+    let v_p_phone = p_phone.value;
+    let v_p_address = p_address.value;
+    let v_p_country =p_country.value;
+    let v_postal = postal.value;
+    // let v_get_flight_id = get_flight_id.value;
+    let v_p_seat_type = p_seat_type.value;
+    let v_p_seat_number  = p_seat_number.value;
+
+    if(p_male.checked) gender = p_male.value;
+    if(p_female.checked) gender = p_female.value;
+
+    document.getElementById("passenger_form").reset();
+
+}
+
+function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender ,p_email, postal){
+    let row_passenger_com = `
+                               <tr id="${passenger_id}-row_passenger_com">
+                                    <td>${passenger_id}</td>
+                                    <td>${first_name, last_name}</td>
+                                    <td>${dob}</td>
+                                    <td>${gender}</td>
+                                    <td>${postal}</td>
+                                    <td>${p_nationality}</td>
+                                    <td>${p_email}/td>
+                                </tr>
+    
+    `;
+    document.getElementById("row_passenger_com").innerHTML = row_passenger_com;
+}
+
+
