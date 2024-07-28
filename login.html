@@ -180,7 +180,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="get_input_admin">
-                                        <tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>Cocacola</td>
                                             <td>Phnom Penh</td>
@@ -192,7 +192,7 @@
                                                 <button class="bookTicket-btn " role="button" id="delete-btn"><i
                                                     class="fa-solid fa-xmark pe-1"></i>Delete</button>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -226,7 +226,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="dis_infor_admin">
-                                        <tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>Cocacola</td>
                                             <td>Phnom Penh</td>
@@ -236,7 +236,7 @@
                                             <td>15</td>
                                             <td>10</td>
                                             <td>5</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -383,7 +383,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="emp_tbl_flight_get_from_admin">
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>1</td>
                                                     <td>Phnom Penh</td>
                                                     <td>10-02-2024</td>
@@ -392,15 +392,15 @@
                                                     <td>15</td>
                                                     <td>10</td>
                                                     <td>5</td>
-                                                    <td><button class="bookTicket-btn" role="button">Book</button></td>
-                                                </tr>
+                                                    <td><button class="bookTicket-btn" role="button" onclick="get_book_ticket(this)">Book</button></td>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
                                     <!-- =======================Passenger Input========================= -->
                                     <div class="card p-4 mt-4">
                                         <h3>Passenger Information</h3>
-                                        <form id="passenger_form">
+                                        <form id="passenger_form" onsubmit="create_passenger(event)">
                                             <div class="row">
                                                 <div class="col-2">
                                                     <div class="mb-3">
@@ -508,7 +508,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-end">
-                                                    <button class="btn sub-btn text-white" role="button"> Submit </button>
+                                                    <button class="btn sub-btn text-white" type="submit"> Submit </button>
                                                 </div>
                                             </div>
                                         </form>
@@ -531,8 +531,8 @@
                                                         <th>Seat Number</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="">
-                                                    <tr>
+                                                <tbody id="flight_com_detail">
+                                                    <!-- <tr>
                                                         <td>1</td>
                                                         <td>Phnom Penh</td>
                                                         <td>10/07/2024</td>
@@ -540,7 +540,7 @@
                                                         <td>15/07/2024</td>
                                                         <td>First Class</td>
                                                         <td>2041</td>
-                                                    </tr>
+                                                    </tr> -->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -559,7 +559,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="row_passenger_com">
-                                                    <tr>
+                                                    <!-- <tr>
                                                         <td>1</td>
                                                         <td>Pheaktra</td>
                                                         <td>01/02/2005</td>
@@ -567,13 +567,13 @@
                                                         <td>202020</td>
                                                         <td>Khmer</td>
                                                         <td>tra@gmail.com</td>
-                                                    </tr>
+                                                    </tr> -->
                                                 </tbody>
                                             </table>
                                         </div>
                                         <h5 class="summary-title mt-3">Flight Total</h5>
-                                        <ul class="list-group mb-2">
-                                            <li class="list-group-item">
+                                        <ul class="list-group mb-2" id="detail_payment">
+                                            <!-- <li class="list-group-item">
                                                 <span class="list-info">Number of Passenger:</span>1
                                             </li>
                                             <li class="list-group-item">
@@ -584,7 +584,7 @@
                                             </li>
                                             <li class="list-group-item">
                                                 <span class="list-info">Total Price:</span><span class="total">$150.55</span>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                         <h5 class="summary-title mt-3">Payment Method</h5>
                                         <div class="my-1 d-flex ">
@@ -671,8 +671,8 @@
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody id="row_passenger_edit">
+                                                <!-- <tr>
                                                     <td>1</td>
                                                     <td>Tra</td>
                                                     <td>Male</td>
@@ -682,7 +682,7 @@
                                                     <td>tra@gmail.com</td>
                                                     <td><button class="bookTicket-btn" role="button"
                                                             id="update-btn">Edit</button></td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                         <!-- ============================================Edit Passenger============================================ -->
@@ -815,7 +815,7 @@
                                             </div>
                                             <button class="sub-btn ms-4">Search</button>
                                         </div>
-                                        <!-- ================================Display Passenger Information=========================== -->
+                                        <!-- ================================Delete Passenger Information=========================== -->
                                         <table class="table table-striped information-wrapper mt-4">
                                             <thead>
                                                 <tr>
@@ -829,8 +829,8 @@
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody id="row_passenger_delete">
+                                                <!-- <tr>
                                                     <td>1</td>
                                                     <td>Tra</td>
                                                     <td>Male</td>
@@ -840,7 +840,7 @@
                                                     <td>tra@gmail.com</td>
                                                     <td><button class="bookTicket-btn " role="button" id="delete-btn"><i
                                                     class="fa-solid fa-xmark pe-1"></i>Delete</button></td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -868,8 +868,8 @@
                                                     <th>Arrival At</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
+                                            <tbody id="dis_player_passenger_infor">
+                                                <!-- <tr>
                                                     <td>1</td>
                                                     <td>Tra</td>
                                                     <td>Male</td>
@@ -879,7 +879,7 @@
                                                     <td>tra@gmail.com</td>
                                                     <td>Phnom Penh</td>
                                                     <td>Siem Reap</td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -908,7 +908,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="emp_flight_with_price">
-                                                <tr>
+                                                <!-- <tr>
                                                     <td>1</td>
                                                     <td>Phnom Penh</td>
                                                     <td>10-08-2024</td>
@@ -918,7 +918,7 @@
                                                     <td>10</td>
                                                     <td>5</td>
                                                     <td>2500$</td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>

@@ -137,7 +137,7 @@ function add_flight(flight_id, airline_name, departure_at, departure_date, arriv
             <td>${economy_seat}</td>
             <td>${business_seat}</td>
             <td>${first_class_seat}</td>
-            <td><button class="bookTicket-btn" role="button">Book</button></td>
+            <td><button class="bookTicket-btn" role="button" onclick="get_book_ticket(this)">Book</button></td>
         </tr>
     `
     let row_emp_flight_with_price = `
@@ -217,7 +217,7 @@ function update_flight(flight_id, airline_name, departure_at, departure_date, ar
         <td>${economy_seat}</td>
         <td>${business_seat}</td>
         <td>${first_class_seat}</td>
-        <td><button class="bookTicket-btn" role="button">Book</button></td>
+        <td><button class="bookTicket-btn" role="button" onclick="get_book_ticket(this)">Book</button></td>
     `;
 }
 
@@ -336,8 +336,12 @@ let get_flight_id = document.getElementById("get_flight_id");
 let p_seat_type = document.getElementById("passenger_seat_type");
 let p_seat_number = document.getElementById("passenger_seat_number");
 
-function create_passenger(){
+
+function create_passenger(event){
+    event.preventDefault();
+
     let gender = '';
+    let price = 0.00;
     let v_passenger_id = passenger_id.value;
     let v_first_name = first_name.value;
     let v_last_name = last_name.value;
@@ -349,30 +353,126 @@ function create_passenger(){
     let v_p_country =p_country.value;
     let v_postal = postal.value;
     // let v_get_flight_id = get_flight_id.value;
-    let v_p_seat_type = p_seat_type.value;
+    let v_p_seat_type = p_seat_type.value.toLowerCase();
     let v_p_seat_number  = p_seat_number.value;
 
     if(p_male.checked) gender = p_male.value;
     if(p_female.checked) gender = p_female.value;
+    // ===seat==
+    if(v_p_seat_type.includes("economy")) price = economy_price;
+    if(v_p_seat_type.includes("business")) price = business_price;
+    if(v_p_seat_type.includes("first")) price = first_class_price;
+
+    add_passenger(v_passenger_id, v_first_name, v_last_name, v_dob, v_p_nationality, gender ,v_p_email, v_postal, price)
 
     document.getElementById("passenger_form").reset();
 
 }
 
-function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender ,p_email, postal){
+function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender ,p_email, postal, price){
     let row_passenger_com = `
                                <tr id="${passenger_id}-row_passenger_com">
                                     <td>${passenger_id}</td>
-                                    <td>${first_name, last_name}</td>
+                                    <td>${first_name} ${last_name}</td>
                                     <td>${dob}</td>
                                     <td>${gender}</td>
-                                    <td>${postal}</td>
+                                    <td>${postal}</td>  
                                     <td>${p_nationality}</td>
-                                    <td>${p_email}/td>
+                                    <td>${p_email}</td>
                                 </tr>
     
     `;
+
+    // let row_dis_passenger_infor = `
+    //     <tr>
+    //         <td>${passenger_id}</td>
+    //         <td>${first_name} ${last_name}</td>
+    //         <td>${gender}</td>
+    //         <td>${dob}</td>
+    //         <td>${postal}</td>
+    //         <td>${p_nationality}</td>
+    //         <td>${p_email}</td>
+    //         <td>Phnom Penh</td>
+    //         <td>Siem Reap</td>
+    //     </tr>
+    // `;
+
+    let detail_for_payment = `
+                <li class="list-group-item">
+                    <span class="list-info">Number of Passenger:</span>1
+                </li>
+                <li class="list-group-item">
+                    <span class="list-info">Airfare:</span>$${price}
+                </li>
+                <li class="list-group-item">
+                    <span class="list-info">Taxes and Fees:</span>0.00
+                </li>
+                <li class="list-group-item">
+                    <span class="list-info">Total Price:</span><span class="total">$${price}</span>
+                </li>
+    `;
     document.getElementById("row_passenger_com").innerHTML = row_passenger_com;
+    document.getElementById("detail_payment").innerHTML = detail_for_payment;
+   
 }
 
+function get_book_ticket(btn){
+    let row_get_booked = btn.parentElement.parentElement;
 
+    let flightId = row_get_booked.getElementsByTagName('td')[0].innerText;
+    let departure_at = row_get_booked.getElementsByTagName('td')[1].innerText;
+    let departure_date = row_get_booked.getElementsByTagName('td')[2].innerText;
+    let arrival_at = row_get_booked.getElementsByTagName('td')[3].innerText;
+    let arrival_date = row_get_booked.getElementsByTagName('td')[4].innerText;
+
+    let v_seat_type = p_seat_type.value;
+    let v_seat_number = p_seat_number.value;
+
+    let v_passenger_id = passenger_id.value;
+    let v_first_name = first_name.value;
+    let v_last_name = last_name.value;
+    let v_dob = dob.value;
+    let v_p_nationality = p_nationality.value;
+    let v_p_email = p_email.value;
+    let v_postal = postal.value;
+
+    if(p_male.checked) gender = p_male.value;
+    if(p_female.checked) gender = p_female.value;
+
+    document.getElementById("get_flight_id").value = flightId;
+
+    let row_com_flight = `
+        <tr>
+            <td>${flightId}</td>
+            <td>${departure_at}</td>
+            <td>${departure_date}</td>
+            <td>${arrival_at}</td>
+            <td>${arrival_date}</td>
+            <td>${v_seat_type}</td>
+            <td>${v_seat_number}</td>
+        </tr>
+    `;
+    
+    let row_dis_passenger_infor = `
+        <tr>
+            <td>${v_passenger_id}</td>
+            <td>${v_first_name} ${v_last_name}</td>
+            <td>${gender}</td>
+            <td>${v_dob}</td>
+            <td>${v_postal}</td>
+            <td>${v_p_nationality}</td>
+            <td>${v_p_email}</td>
+            <td>${departure_at}</td>
+            <td>${arrival_at}</td>
+        </tr>
+    `;
+
+    document.getElementById("flight_com_detail").innerHTML = row_com_flight;
+    document.getElementById("dis_player_passenger_infor").innerHTML += row_dis_passenger_infor;
+}
+
+// task
+// +decreasement seat
+// +dup id
+// +delete pas
+// +edit / up pass
