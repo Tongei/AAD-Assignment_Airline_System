@@ -418,8 +418,37 @@ function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, 
 
     document.getElementById("row_passenger_com").innerHTML = row_passenger_com;
 
+    let row_passenger_edit = `
+            <tr id="${passenger_id}-row_passenger_edit">
+                <td>${passenger_id}</td>
+                <td>${first_name} ${last_name}</td>
+                <td>${gender}</td>
+                <td>${dob}</td>
+                <td>${postal}</td>
+                <td>${p_nationality}</td>
+                <td>${p_email}</td>
+                <td><button class="bookTicket-btn" role="button" onclick="edit_passenger(${passenger_id})">Edit</button></td>
+            </tr>
+    `;
+
+    document.getElementById("row_passenger_edit").innerHTML += row_passenger_edit;
+
+    let row_passenger_delete = `
+             <tr id="${passenger_id}-row_passenger_delete">
+                <td>${passenger_id}</td>
+                <td>${first_name} ${last_name}</td>
+                <td>${gender}</td>
+                <td>${dob}</td>
+                <td>${postal}</td>
+                <td>${p_nationality}</td>
+                <td>${p_email}</td>
+                <td><button onclick="delete_passenger(${passenger_id})" class="bookTicket-btn " role="button"><i class="fa-solid fa-xmark pe-1"></i>Delete</button></td>
+            </tr>
+    `;
+    document.getElementById("row_passenger_delete").innerHTML += row_passenger_delete;
+
     let row_dis_passenger_infor = `
-        <tr>
+        <tr id="${passenger_id}-row_dis_passenger_infor">
             <td>${passenger_id}</td>
             <td>${first_name} ${last_name}</td>
             <td>${gender}</td>
@@ -468,6 +497,22 @@ function paid(event){
     ed.value = '';
 }
 
+function delete_passenger(passenger_id){
+    	let row_passenger_edit = document.getElementById(passenger_id + "-row_passenger_edit");
+        let row_passenger_delete = document.getElementById(passenger_id+"-row_passenger_delete");
+        let row_dis_passenger_infor = document.getElementById(passenger_id+"-row_dis_passenger_infor");
+
+        // alert();
+        if(row_passenger_edit) row_passenger_edit.remove();
+        if(row_passenger_delete) row_passenger_delete.remove();
+        if(row_dis_passenger_infor) row_dis_passenger_infor.remove();
+}
+
+
+
+
+
+
 function searchTableForUpdatePs(){
     const originalTableData = [...document.getElementById('row_passenger_edit').rows].map(row => row.innerHTML);
     console.log(originalTableData);
@@ -502,6 +547,43 @@ function searchTableForUpdatePs(){
         }
     });
 }
+
+function searchTableForDeletePs(){
+    const originalTableData = [...document.getElementById('row_passenger_delete').rows].map(row => row.innerHTML);
+    console.log(originalTableData);
+    const input = document.getElementById("searchInput_delete");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("tbl_passenger_delete");
+    const tr = table.getElementsByTagName("tr");
+    if (!filter) {
+        resetTable();
+        return;
+    }
+
+    for (let i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none";
+        const td = tr[i].getElementsByTagName("td");
+        for (let j = 0; j < td.length; j++) {
+            if (td[j]) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                }
+            }
+        }
+    }
+    function resetTable() {
+        const tableBody = document.getElementById('row_passenger_delete');
+        tableBody.innerHTML = originalTableData.map(row => `<tr>${row}</tr>`).join('');
+    }
+    document.getElementById("searchInput_update").addEventListener("input", function() {
+        if (this.value === '') {
+            resetTable();
+        }
+    });
+}
+
+
 
 // task
 // decreasement seat
