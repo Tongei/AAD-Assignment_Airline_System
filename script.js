@@ -336,11 +336,10 @@ let get_flight_id = document.getElementById("get_flight_id");
 let p_seat_type = document.getElementById("passenger_seat_type");
 let p_seat_number = document.getElementById("passenger_seat_number");
 
-
+let gender = '';
 function create_passenger(event){
     event.preventDefault();
 
-    let gender = '';
     let price = 0.00;
     let v_passenger_id = passenger_id.value;
     let v_first_name = first_name.value;
@@ -363,57 +362,10 @@ function create_passenger(event){
     if(v_p_seat_type.includes("business")) price = business_price;
     if(v_p_seat_type.includes("first")) price = first_class_price;
 
-    add_passenger(v_passenger_id, v_first_name, v_last_name, v_dob, v_p_nationality, gender ,v_p_email, v_postal, price)
+    add_passenger(v_passenger_id, v_first_name, v_last_name, v_dob, v_p_nationality, gender ,v_p_email, v_postal, price, p_seat_type.value, v_p_seat_number)
 
     document.getElementById("passenger_form").reset();
 
-}
-
-function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender ,p_email, postal, price){
-    let row_passenger_com = `
-                               <tr id="${passenger_id}-row_passenger_com">
-                                    <td>${passenger_id}</td>
-                                    <td>${first_name} ${last_name}</td>
-                                    <td>${dob}</td>
-                                    <td>${gender}</td>
-                                    <td>${postal}</td>  
-                                    <td>${p_nationality}</td>
-                                    <td>${p_email}</td>
-                                </tr>
-    
-    `;
-
-    // let row_dis_passenger_infor = `
-    //     <tr>
-    //         <td>${passenger_id}</td>
-    //         <td>${first_name} ${last_name}</td>
-    //         <td>${gender}</td>
-    //         <td>${dob}</td>
-    //         <td>${postal}</td>
-    //         <td>${p_nationality}</td>
-    //         <td>${p_email}</td>
-    //         <td>Phnom Penh</td>
-    //         <td>Siem Reap</td>
-    //     </tr>
-    // `;
-
-    let detail_for_payment = `
-                <li class="list-group-item">
-                    <span class="list-info">Number of Passenger:</span>1
-                </li>
-                <li class="list-group-item">
-                    <span class="list-info">Airfare:</span>$${price}
-                </li>
-                <li class="list-group-item">
-                    <span class="list-info">Taxes and Fees:</span>0.00
-                </li>
-                <li class="list-group-item">
-                    <span class="list-info">Total Price:</span><span class="total">$${price}</span>
-                </li>
-    `;
-    document.getElementById("row_passenger_com").innerHTML = row_passenger_com;
-    document.getElementById("detail_payment").innerHTML = detail_for_payment;
-   
 }
 
 function get_book_ticket(btn){
@@ -424,9 +376,6 @@ function get_book_ticket(btn){
     let departure_date = row_get_booked.getElementsByTagName('td')[2].innerText;
     let arrival_at = row_get_booked.getElementsByTagName('td')[3].innerText;
     let arrival_date = row_get_booked.getElementsByTagName('td')[4].innerText;
-
-    let v_seat_type = p_seat_type.value;
-    let v_seat_number = p_seat_number.value;
 
     let v_passenger_id = passenger_id.value;
     let v_first_name = first_name.value;
@@ -448,8 +397,8 @@ function get_book_ticket(btn){
             <td>${departure_date}</td>
             <td>${arrival_at}</td>
             <td>${arrival_date}</td>
-            <td>${v_seat_type}</td>
-            <td>${v_seat_number}</td>
+            <td></td>
+            <td></td>
         </tr>
     `;
     
@@ -471,8 +420,64 @@ function get_book_ticket(btn){
     document.getElementById("dis_player_passenger_infor").innerHTML += row_dis_passenger_infor;
 }
 
+function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender ,p_email, postal, price, seat_type, seat_number){
+    let row_passenger_com = `
+                               <tr id="${passenger_id}-row_passenger_com">
+                                    <td>${passenger_id}</td>
+                                    <td>${first_name} ${last_name}</td>
+                                    <td>${dob}</td>
+                                    <td>${gender}</td>
+                                    <td>${postal}</td>  
+                                    <td>${p_nationality}</td>
+                                    <td>${p_email}</td>
+                                </tr>
+    
+    `;
+
+    let inner_data_com_flight = document.getElementById("flight_com_detail");
+    inner_data_com_flight.getElementsByTagName('td')[5].innerText = seat_type;
+    inner_data_com_flight.getElementsByTagName('td')[6].innerText = seat_number;
+
+    let detail_for_payment = `
+                <li class="list-group-item">
+                    <span class="list-info">Number of Passenger:</span>1
+                </li>
+                <li class="list-group-item">
+                    <span class="list-info">Airfare:</span>$${price}
+                </li>
+                <li class="list-group-item">
+                    <span class="list-info">Taxes and Fees:</span>0.00
+                </li>
+                <li class="list-group-item">
+                    <span class="list-info">Total Price:</span><span class="total">$${price}</span>
+                </li>
+    `;
+    document.getElementById("row_passenger_com").innerHTML = row_passenger_com;
+    document.getElementById("detail_payment").innerHTML = detail_for_payment;
+   
+}
+
+function paid(event){
+    event.preventDefault();
+    let pay_fn = document.getElementById("pay_fn");
+    let pay_ln = document.getElementById("pay_ln");
+    let cdc = document.getElementById("credit-card");
+    let sc = document.getElementById("security-code");
+    let ed = document.getElementById("expire-date");
+
+    alert("Successfully paid from " + pay_fn.value + " " + pay_ln.value + ".");
+
+    pay_fn.value = '';
+    pay_ln.value = '';
+    cdc.value = '';
+    sc.value = '';
+    ed.value = '';
+}
+
+
+
 // task
-// +decreasement seat
+// decreasement seat
 // +dup id
 // +delete pas
 // +edit / up pass

@@ -405,7 +405,7 @@
                                                 <div class="col-2">
                                                     <div class="mb-3">
                                                         <label for="last-name" class="mb-2 form-label">Passenger ID</label>
-                                                        <input type="text" class="form-control" placeholder="Last Name"
+                                                        <input type="text" class="form-control" placeholder="Passenger ID"
                                                             id="passenger_id">
                                                     </div>
                                                 </div>
@@ -503,7 +503,7 @@
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="country" class="mb-2 form-label">Seat Number</label>
-                                                        <input type="text" class="form-control" placeholder="Country"
+                                                        <input type="text" class="form-control" placeholder="Seat Number"
                                                             id="passenger_seat_number">
                                                     </div>
                                                 </div>
@@ -588,54 +588,50 @@
                                         </ul>
                                         <h5 class="summary-title mt-3">Payment Method</h5>
                                         <div class="my-1 d-flex ">
-                                            <div>
-                                                <input type="radio" class="paymentRadio" name="payment" id="pay-check" >
-                                                <label for="pay-check" class="form-label">Check</label>
-                                            </div>
                                             <div class="ms-4">
                                                 <input type="radio" class="paymentRadio" name="payment" id="credit" checked>
                                                 <label for="credit" class="form-label">Credit Card/Debit</label>
                                             </div>
                                         </div>
-                                        <form action="" class="payment-form">
+                                        <form onsubmit="paid(event)" class="payment-form">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="first-name" class="form-label">First Name</label>
-                                                        <input type="text" id="first-name" placeholder="First name"
+                                                        <input required type="text" id="pay_fn" placeholder="First name"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="last-name" class="form-label">First Name</label>
-                                                        <input type="text" id="last-name" placeholder="Last name"
+                                                        <input required type="text" id="pay_ln" placeholder="Last name"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="credit-card" class="form-label">Credit Card</label>
-                                                        <input type="text" id="credit-card"
+                                                        <input required type="text" id="credit-card"
                                                             placeholder="**** **** **** ****" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-3">
                                                         <label for="security-code" class="form-label">Security Code</label>
-                                                        <input type="text" id="security-code" placeholder="CVV"
+                                                        <input required type="text" id="security-code" placeholder="CVV"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-3">
                                                         <label for="expire-date" class="form-label">Security Code</label>
-                                                        <input type="text" id="expire-date" placeholder="DD/MM/YY"
+                                                        <input required type="text" id="expire-date" placeholder="DD/MM/YY"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-end mt-2">
-                                                    <button class="sub-btn">Submit</button>
+                                                    <button class="sub-btn" type="submit">Submit</button>
                                                 </div>
                                             </div>
                                         </form>
