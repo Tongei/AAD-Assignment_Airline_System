@@ -61,7 +61,6 @@ let business_seat = document.getElementById("business");
 let first_class_seat = document.getElementById("first-class");
 let note = document.getElementById("note");
 
-
 function create_flight(event){
     event.preventDefault();
     let v_airline_name = airline_name.value;
@@ -79,6 +78,10 @@ function create_flight(event){
         editingFlightId = null;
         submitButton.textContent = 'Add Flight';
     } else {
+        if (isDuplicateFlightId(v_flight_id)) {
+            alert("Duplicate flight ID. Please enter a unique flight ID.");
+            return;
+        }
         add_flight(v_flight_id, v_airline_name, v_departure_at, v_departure_date, v_arrival_at, v_arrival_date, v_economy_seat, v_business_seat, v_first_class_seat);
     }
     // v_airline_name = '';
@@ -93,7 +96,15 @@ function create_flight(event){
 
     document.querySelector('#form_flight').reset();
 }
-
+function isDuplicateFlightId(flight_id) {
+    let rows = document.getElementById("dis_infor_admin").getElementsByTagName("tr");
+    for (let row of rows) {
+        if (row.getElementsByTagName("td")[0].innerText === flight_id) {
+            return true;
+        }
+    }
+    return false;
+}
 
 function add_flight(flight_id, airline_name, departure_at, departure_date, arrival_at, arrival_date, economy_seat, business_seat, first_class_seat){
     let total_price = eval((economy_price * economy_seat)+(business_price * business_seat)+(first_class_price * first_class_seat));
@@ -342,7 +353,7 @@ let p_seat_type = document.getElementById("passenger_seat_type");
 let p_seat_number = document.getElementById("passenger_seat_number");
 
 let gender = '';
-
+let passengerIds = new Set();
 function create_passenger(event){
     event.preventDefault();
 
@@ -359,6 +370,13 @@ function create_passenger(event){
     let v_postal = postal.value;
     let v_p_seat_type = p_seat_type.value.toLowerCase();
     let v_p_seat_number = p_seat_number.value;
+
+    if (passengerIds.has(v_passenger_id)) {
+        alert("Passenger ID already exists! Please use a different ID.");
+        return;
+    }
+
+    passengerIds.add(v_passenger_id);
 
     if(p_male.checked) gender = p_male.value;
     if(p_female.checked) gender = p_female.value;
