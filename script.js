@@ -245,79 +245,7 @@ function delete_flight(flight_id){
     if(flight_dis_infor_flight_emp) flight_dis_infor_flight_emp.remove();
 }
 
-// ====search====
 
-
-function searchTable(){
-    const originalTableData = [...document.getElementById('dis_infor_admin').rows].map(row => row.innerHTML);
-    console.log(originalTableData);
-    const input = document.getElementById("searchInput");
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById("tbl_dis_infor_admin");
-    const tr = table.getElementsByTagName("tr");
-    if (!filter) {
-        resetTable();
-        return;
-    }
-
-    for (let i = 1; i < tr.length; i++) {
-        tr[i].style.display = "none";
-        const td = tr[i].getElementsByTagName("td");
-        for (let j = 0; j < td.length; j++) {
-            if (td[j]) {
-                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                    break;
-                }
-            }
-        }
-    }
-    function resetTable() {
-        const tableBody = document.getElementById('dis_infor_admin');
-        tableBody.innerHTML = originalTableData.map(row => `<tr id="${flight_id}-row_dis_infor_admin">${row}</tr>`).join('');
-    }
-    document.getElementById("searchInput").addEventListener("input", function() {
-        if (this.value === '') {
-            resetTable();
-        }
-    });
-}
-
-// search flight publish
-document.getElementById('flightSearchForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    let departure = document.getElementById('departure').value.toLowerCase();
-    let arrival = document.getElementById('arrival').value.toLowerCase();
-    let departDate = document.getElementById('depart-date').value;
-    let arrivalDate = document.getElementById('arrival-date').value;
-
-    filterTable(departure, arrival, departDate, arrivalDate);
-});
-
-function filterTable(departure, arrival, departDate, arrivalDate) {
-    let table = document.getElementById('main_emp_tbl_flight_get_from_admin');
-    let rows = table.getElementsByTagName('tr');
-
-    for (let i = 1; i < rows.length; i++) {
-        let cells = rows[i].getElementsByTagName('td');
-        let depCell = cells[1].textContent.toLowerCase();
-        let arrCell = cells[3].textContent.toLowerCase();
-        let depDateCell = cells[2].textContent;
-        let arrDateCell = cells[4].textContent;
-
-        if (
-            (departure === '' || depCell.includes(departure)) &&
-            (arrival === '' || arrCell.includes(arrival)) &&
-            (departDate === '' || depDateCell === departDate) &&
-            (arrivalDate === '' || arrDateCell === arrivalDate)
-        ) {
-            rows[i].style.display = '';
-        } else {
-            rows[i].style.display = 'none';
-        }
-    }
-}
 
 // Add an event listener to reset the table when inputs are cleared
 document.getElementById('flightSearchForm').addEventListener('reset', function() {
@@ -351,13 +279,14 @@ let postal = document.getElementById("postal");
 let get_flight_id = document.getElementById("get_flight_id");
 let p_seat_type = document.getElementById("passenger_seat_type");
 let p_seat_number = document.getElementById("passenger_seat_number");
-
+let price = 0.00;
 let gender = '';
+
 let passengerIds = new Set();
 function create_passenger(event){
     event.preventDefault();
 
-    let price = 0.00;
+    
     let v_passenger_id = passenger_id.value;
     let v_first_name = first_name.value;
     let v_last_name = last_name.value;
@@ -386,7 +315,7 @@ function create_passenger(event){
     if(v_p_seat_type.includes("first")) price = first_class_price;
 
     // Pass stored flight details to add_passenger
-    add_passenger(v_passenger_id, v_first_name, v_last_name, v_dob, v_p_nationality, gender, v_p_email, v_postal, price, v_p_seat_type, v_p_seat_number, flightDetails.departure_at, flightDetails.arrival_at);
+    add_passenger(v_passenger_id, v_first_name, v_last_name, v_dob, v_p_nationality, gender, v_p_email, v_postal, price, v_p_seat_type, v_p_seat_number,flightDetails.flightId, flightDetails.departure_at, flightDetails.arrival_at, v_p_phone, v_p_country,  v_p_address);
 
     document.getElementById("passenger_form").reset();
 
@@ -405,7 +334,7 @@ function get_book_ticket(btn){
     document.getElementById("get_flight_id").value = flightDetails.flightId;
 
     let row_com_flight = `
-        <tr>
+        <tr id="${flightDetails.flightId}-row_com_flight-da">
             <td>${flightDetails.flightId}</td>
             <td>${flightDetails.departure_at}</td>
             <td>${flightDetails.departure_date}</td>
@@ -418,7 +347,7 @@ function get_book_ticket(btn){
     document.getElementById("flight_com_detail").innerHTML = row_com_flight;
 }
 
-function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender, p_email, postal, price, seat_type, seat_number, departure_at, arrival_at) {
+function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, gender, p_email, postal, price, seat_type, seat_number,flightId, departure_at, arrival_at, p_phone, p_country, p_address) {
     let inner_data_com_flight = document.getElementById("flight_com_detail");
     inner_data_com_flight.getElementsByTagName('td')[5].innerText = seat_type;
     inner_data_com_flight.getElementsByTagName('td')[6].innerText = seat_number;
@@ -440,13 +369,21 @@ function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, 
 
     let row_passenger_edit = `
             <tr id="${passenger_id}-row_passenger_edit">
-                <td>${passenger_id}</td>
-                <td>${first_name} ${last_name}</td>
+                <td>${passenger_id}</td> 
+                <td>${first_name}</td>
+                <td>${last_name}</td>
                 <td>${gender}</td>
                 <td>${dob}</td>
                 <td>${postal}</td>
                 <td>${p_nationality}</td>
                 <td>${p_email}</td>
+
+                <td class="d-none">${flightId}</td>
+                <td class="d-none">${p_phone}</td>
+                <td class="d-none">${p_country}</td>
+                <td class="d-none">${p_address}</td>
+                <td class="d-none">${seat_type}</td>
+                <td class="d-none">${seat_number}</td>
                 <td><button class="bookTicket-btn" role="button" onclick="edit_passenger(${passenger_id})">Edit</button></td>
             </tr>
     `;
@@ -500,6 +437,205 @@ function add_passenger(passenger_id, first_name, last_name, dob, p_nationality, 
 }
 
 // ===--=-====
+function delete_passenger(passenger_id){
+    	let row_passenger_edit = document.getElementById(passenger_id + "-row_passenger_edit");
+        let row_passenger_delete = document.getElementById(passenger_id+"-row_passenger_delete");
+        let row_dis_passenger_infor = document.getElementById(passenger_id+"-row_dis_passenger_infor");
+
+        // alert();
+        if(row_passenger_edit) row_passenger_edit.remove();
+        if(row_passenger_delete) row_passenger_delete.remove();
+        if(row_dis_passenger_infor) row_dis_passenger_infor.remove();
+}
+
+// document.getElementById("airline-name")
+function edit_passenger(passenger_id) {
+    let row = document.getElementById(passenger_id + "-row_passenger_edit");
+    let cells = row.getElementsByTagName('td');
+
+    let passenger_id_u = document.getElementById("passenger-id-update");
+    let firstname_u = document.getElementById("first-name-update");
+    let lastname_u = document.getElementById("last-name-update");
+    let nationality_u = document.getElementById("nationality-update");
+    let dob_u = document.getElementById("dob-update");
+    let email_u = document.getElementById("email-update");
+    let phone_u = document.getElementById("phone-update");
+    let address_u = document.getElementById("address-update");
+    let country_u = document.getElementById("country-update");
+    let postal_u = document.getElementById("postal-update");
+    let flight_id_u = document.getElementById("flight-id-update");
+    let seat_type_u = document.getElementById("seat-type-update");
+    let seat_number_u = document.getElementById("seat-number-update");
+    let male_u = document.getElementById("male-btn-update");
+    let female_u = document.getElementById("female-btn-update");
+
+    passenger_id_u.value = cells[0].innerHTML;
+    firstname_u.value = cells[1].innerHTML;
+    lastname_u.value = cells[2].innerHTML;
+    nationality_u.value = cells[6].innerHTML;
+    dob_u.value = cells[4].innerHTML;
+    email_u.value = cells[7].innerHTML;
+    phone_u.value = cells[9].innerHTML;
+    address_u.value = cells[11].innerHTML;
+    country_u.value = cells[10].innerHTML;
+    postal_u.value = cells[5].innerHTML;
+    flight_id_u.value = cells[8].innerHTML;
+    seat_type_u.value = cells[12].innerHTML;
+    seat_number_u.value = cells[13].innerHTML;
+
+    if (cells[3].innerHTML.toLowerCase() === "male") {
+        male_u.checked = true;
+    } else if (cells[3].innerHTML.toLowerCase() === "female") {
+        female_u.checked = true;
+    }
+}
+
+function update_passenger(event) {
+    event.preventDefault();
+
+    let passenger_id_u = document.getElementById("passenger-id-update").value;
+    let firstname_u = document.getElementById("first-name-update").value;
+    let lastname_u = document.getElementById("last-name-update").value;
+    let nationality_u = document.getElementById("nationality-update").value;
+    let dob_u = document.getElementById("dob-update").value;
+    let email_u = document.getElementById("email-update").value;
+    let phone_u = document.getElementById("phone-update").value;
+    let address_u = document.getElementById("address-update").value;
+    let country_u = document.getElementById("country-update").value;
+    let postal_u = document.getElementById("postal-update").value;
+    let flight_id_u = document.getElementById("flight-id-update").value;
+    let seat_type_u = document.getElementById("seat-type-update").value;
+    let seat_number_u = document.getElementById("seat-number-update").value;
+    let male_u = document.getElementById("male-btn-update").checked;
+    let female_u = document.getElementById("female-btn-update").checked;
+
+    let gender_u = male_u ? "male" : female_u ? "female" : "";
+
+    let get_da = document.getElementById(`${flightDetails.flightId}-row_com_flight-da`);
+    let row_da = get_da.getElementsByTagName('td');
+    let get_arr_at = row_da[3].innerHTML;
+    let get_de_at = row_da[1].innerHTML;
+
+    let u_row_dis_passenger_infor = document.getElementById(`${passenger_id_u}-row_dis_passenger_infor`);
+    u_row_dis_passenger_infor.innerHTML = `
+        <td>${passenger_id_u}</td>
+        <td>${firstname_u} ${lastname_u}</td>
+        <td>${gender_u}</td>
+        <td>${dob_u}</td>
+        <td>${postal_u}</td>
+        <td>${nationality_u}</td>
+        <td>${email_u}</td>
+        <td>${get_de_at}</td>
+        <td>${get_arr_at}</td>
+    `;
+
+    let u_row_passenger_delete = document.getElementById(`${passenger_id_u}-row_passenger_delete`);
+    u_row_passenger_delete.innerHTML = `
+        <td>${passenger_id_u}</td>
+        <td>${firstname_u} ${lastname_u}</td>
+        <td>${gender_u}</td>
+        <td>${dob_u}</td>
+        <td>${postal_u}</td>
+        <td>${nationality_u}</td>
+        <td>${email_u}</td>
+        <td><button onclick="delete_passenger(${passenger_id_u})" class="bookTicket-btn " role="button"><i class="fa-solid fa-xmark pe-1"></i>Delete</button></td>
+    `;
+
+    let u_row_passenger_edit = document.getElementById(`${passenger_id_u}-row_passenger_edit`);
+    u_row_passenger_edit.innerHTML = `
+        <td>${passenger_id_u}</td> 
+        <td>${firstname_u}</td>
+        <td>${lastname_u}</td>
+        <td>${gender_u}</td>
+        <td>${dob_u}</td>
+        <td>${postal_u}</td>
+        <td>${nationality_u}</td>
+        <td>${email_u}</td>
+        <td class="d-none">${flight_id_u}</td>
+        <td class="d-none">${phone_u}</td>
+        <td class="d-none">${country_u}</td>
+        <td class="d-none">${address_u}</td>
+        <td class="d-none">${seat_type_u}</td>
+        <td class="d-none">${seat_number_u}</td>
+        <td><button class="bookTicket-btn" role="button" onclick="edit_passenger(${passenger_id_u})">Edit</button></td>
+    `;
+
+    let row_passenger_com_u = `
+                               <tr id="${passenger_id_u}-row_passenger_com">
+                                    <td>${passenger_id_u}</td>
+                                    <td>${firstname_u} ${lastname_u}</td>
+                                    <td>${dob_u}</td>
+                                    <td>${gender_u}</td>
+                                    <td>${postal_u}</td>  
+                                    <td>${nationality_u}</td>
+                                    <td>${email_u}</td>
+                                </tr>
+    
+    `;
+
+    row_da[5].innerHTML = seat_type_u;
+    row_da[6].innerHTML = seat_number_u;
+    document.getElementById("row_passenger_com").innerHTML = row_passenger_com_u;
+
+    if(seat_type_u.includes("economy")) price = economy_price;
+    if(seat_type_u.includes("business")) price = business_price;
+    if(seat_type_u.includes("first")) price = first_class_price;
+
+    let detail_for_payment_u = `
+        <li class="list-group-item">
+            <span class="list-info">Number of Passenger:</span>1
+        </li>
+        <li class="list-group-item">
+            <span class="list-info">Airfare:</span>$${price}
+        </li>
+        <li class="list-group-item">
+            <span class="list-info">Taxes and Fees:</span>0.00
+        </li>
+        <li class="list-group-item">
+            <span class="list-info">Total Price:</span><span class="total">$${price}</span>
+        </li>
+    `;
+    document.getElementById("detail_payment").innerHTML = detail_for_payment_u;
+
+    document.getElementById("passenger_form_update").reset();
+}
+
+// ====search====
+function searchTable(){
+    const originalTableData = [...document.getElementById('dis_infor_admin').rows].map(row => row.innerHTML);
+    console.log(originalTableData);
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("tbl_dis_infor_admin");
+    const tr = table.getElementsByTagName("tr");
+    if (!filter) {
+        resetTable();
+        return;
+    }
+
+    for (let i = 1; i < tr.length; i++) {
+        tr[i].style.display = "none";
+        const td = tr[i].getElementsByTagName("td");
+        for (let j = 0; j < td.length; j++) {
+            if (td[j]) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                }
+            }
+        }
+    }
+    function resetTable() {
+        const tableBody = document.getElementById('dis_infor_admin');
+        tableBody.innerHTML = originalTableData.map(row => `<tr id="${flight_id}-row_dis_infor_admin">${row}</tr>`).join('');
+    }
+    document.getElementById("searchInput").addEventListener("input", function() {
+        if (this.value === '') {
+            resetTable();
+        }
+    });
+}
+
 function paid(event){
     event.preventDefault();
     let pay_fn = document.getElementById("pay_fn");
@@ -518,18 +654,43 @@ function paid(event){
 
     document.getElementById("payment-section").classList.add("d-none");
 }
+// search flight publish
+document.getElementById('flightSearchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
 
-function delete_passenger(passenger_id){
-    	let row_passenger_edit = document.getElementById(passenger_id + "-row_passenger_edit");
-        let row_passenger_delete = document.getElementById(passenger_id+"-row_passenger_delete");
-        let row_dis_passenger_infor = document.getElementById(passenger_id+"-row_dis_passenger_infor");
+    let departure = document.getElementById('departure').value.toLowerCase();
+    let arrival = document.getElementById('arrival').value.toLowerCase();
+    let departDate = document.getElementById('depart-date').value;
+    let arrivalDate = document.getElementById('arrival-date').value;
 
-        // alert();
-        if(row_passenger_edit) row_passenger_edit.remove();
-        if(row_passenger_delete) row_passenger_delete.remove();
-        if(row_dis_passenger_infor) row_dis_passenger_infor.remove();
+    filterTable(departure, arrival, departDate, arrivalDate);
+});
+
+function filterTable(departure, arrival, departDate, arrivalDate) {
+    let table = document.getElementById('main_emp_tbl_flight_get_from_admin');
+    let rows = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName('td');
+        let depCell = cells[1].textContent.toLowerCase();
+        let arrCell = cells[3].textContent.toLowerCase();
+        let depDateCell = cells[2].textContent;
+        let arrDateCell = cells[4].textContent;
+
+        if (
+            (departure === '' || depCell.includes(departure)) &&
+            (arrival === '' || arrCell.includes(arrival)) &&
+            (departDate === '' || depDateCell === departDate) &&
+            (arrivalDate === '' || arrDateCell === arrivalDate)
+        ) {
+            rows[i].style.display = '';
+        } else {
+            rows[i].style.display = 'none';
+        }
+    }
 }
 
+// ===search====
 function searchTableForUpdatePs(){
     const originalTableData = [...document.getElementById('row_passenger_edit').rows].map(row => row.innerHTML);
     console.log(originalTableData);
@@ -599,3 +760,4 @@ function searchTableForDeletePs(){
         }
     });
 }
+
