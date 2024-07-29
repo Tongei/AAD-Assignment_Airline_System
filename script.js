@@ -389,6 +389,8 @@ function create_passenger(event){
     add_passenger(v_passenger_id, v_first_name, v_last_name, v_dob, v_p_nationality, gender, v_p_email, v_postal, price, v_p_seat_type, v_p_seat_number, flightDetails.departure_at, flightDetails.arrival_at);
 
     document.getElementById("passenger_form").reset();
+
+    document.getElementById("payment-section").classList.remove("d-none");
 }
 
 function get_book_ticket(btn){
@@ -513,6 +515,8 @@ function paid(event){
     cdc.value = '';
     sc.value = '';
     ed.value = '';
+
+    document.getElementById("payment-section").classList.add("d-none");
 }
 
 function delete_passenger(passenger_id){
@@ -525,11 +529,6 @@ function delete_passenger(passenger_id){
         if(row_passenger_delete) row_passenger_delete.remove();
         if(row_dis_passenger_infor) row_dis_passenger_infor.remove();
 }
-
-
-
-
-
 
 function searchTableForUpdatePs(){
     const originalTableData = [...document.getElementById('row_passenger_edit').rows].map(row => row.innerHTML);
@@ -600,11 +599,3 @@ function searchTableForDeletePs(){
         }
     });
 }
-
-
-
-// task
-// decreasement seat
-// +dup id
-// +delete pas
-// +edit / up pass

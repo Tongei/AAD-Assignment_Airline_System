@@ -13,7 +13,7 @@
     <main class="">
     <!-- =====================================LOGIN-FORM=================================================================== -->
         <!-- ====Test Task none it first===== -->
-        <div class="container-fluid p-0 d-none" id="sign_up">
+        <div class="container-fluid p-0 d-block" id="sign_up">
             <section class="login-sect d-flex align-items-center justify-content-center flex-column">
                 <div class="logo">
                     <i class="fa-solid fa-plane-departure"></i>
@@ -48,7 +48,7 @@
 
         <!-- =======================================ADMIN-FORM======================================= -->
          <!-- ======after-finish task none it==== -->
-        <div class="container-fluid" id="main_admin">
+        <div class="container-fluid d-none" id="main_admin">
             <section class="admin p-5">
                 <div class="profile d-flex justify-content-end">
                     <button class="btn profile-acc d-flex justify-content-center align-items-center" type="button"
@@ -248,7 +248,7 @@
 
         <!-- =======================================EMPLOYEEE-FORM======================================= -->
          <!-- ======after-finish task none it==== -->
-        <div class="container-fluid p-0" id="main_emp">
+        <div class="container-fluid p-0 d-none" id="main_emp">
             <section class="employee">
                 <div class="row m-0">
                     <div class="col-3 p-5 side-setting position-sticky top-0">
@@ -514,7 +514,7 @@
                                         </form>
                                         <!-- =======================END Search Flight Book========================= -->
                                     </div>
-                                    <div class="card border-0 p-4 mt-4">
+                                    <div class="card border-0 p-4 mt-4 d-none" id="payment-section">
                                         <h3 class="border-0 p-0 m-0">Confirmation</h3>
                                         <span class="small mb-3">Please check the information carefully before the confirmation</span>
                                         <h5 class="summary-title">Flight Summary</h5>
@@ -683,45 +683,52 @@
                                         </table>
                                         <!-- ============================================Edit Passenger============================================ -->
                                         <h3 class="mt-3">Update Passenger Information</h3>
-                                        <form >
+                                        <form>
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-2">
                                                     <div class="mb-3">
                                                         <label for="first-name" class="mb-2 form-label">First Name</label>
                                                         <input type="text" class="form-control" placeholder="First Name"
-                                                            id="first-name">
+                                                            id="flight-id-update">
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-5">
+                                                    <div class="mb-3">
+                                                        <label for="first-name" class="mb-2 form-label">First Name</label>
+                                                        <input type="text" class="form-control" placeholder="First Name"
+                                                            id="first-name-update">
+                                                    </div>
+                                                </div>
+                                                <div class="col-5">
                                                     <div class="mb-3">
                                                         <label for="last-name" class="mb-2 form-label">Last Name</label>
                                                         <input type="text" class="form-control" placeholder="Last Name"
-                                                            id="last-name">
+                                                            id="last-name-update">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="nationality" class="form-label">Nationality</label>
                                                         <input type="text" class="form-control" placeholder="Nationality"
-                                                            id="nationality">
+                                                            id="nationality-update">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-3">
                                                         <label for="dob" class="mb-2 form-label">Date of Birth</label>
                                                         <input type="text" class="form-control" placeholder="Date of Birth"
-                                                            id="dob">
+                                                            id="dob-update">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <label class="form-label">Gender</label>
                                                     <div class="d-flex pt-1">
                                                         <div class="">
-                                                            <input type="radio" name="genderRadio" id="female-btn">
+                                                            <input type="radio" name="genderRadio" id="female-btn-update">
                                                             <label for="female-btn" class="mb-2 form-label">Female</label>
                                                         </div>
                                                         <div class="ms-5">
-                                                            <input type="radio" name="genderRadio" id="male-btn">
+                                                            <input type="radio" name="genderRadio" id="male-btn-update">
                                                             <label for="male-btn" class="mb-2 form-label">Male</label>
                                                         </div>
                                                     </div>
@@ -730,14 +737,14 @@
                                                     <div class="mb-3">
                                                         <label for="email" class="mb-2 form-label">Email</label>
                                                         <input type="email" class="form-control"
-                                                            placeholder="username@gmail.com" >
+                                                            placeholder="username@gmail.com" id="email-update">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="phone" class="mb-2 form-label">Phone</label>
                                                         <input type="tel" class="form-control" placeholder="(000) 000-000"
-                                                            >
+                                                          id="phone-update"  >
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
@@ -757,39 +764,39 @@
                                                     <div class="mb-3">
                                                         <label for="country" class="mb-2 form-label">Country</label>
                                                         <input type="text" class="form-control" placeholder="Country"
-                                                            >
+                                                           id="country-update" >
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="postal" class="mb-2 form-label">Postal/Zip Code</label>
                                                         <input type="text" class="form-control"
-                                                            placeholder="Postal/Zip Code" id="postal">
+                                                            placeholder="Postal/Zip Code" id="postal-update">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="flight-id" class="mb-2 form-label">Flight ID</label>
                                                         <input type="text" class="form-control" placeholder="Flight ID"
-                                                            id="flight-id">
+                                                            id="flight-id-update" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="seat-type" class="mb-2 form-label">Seat Type</label>
                                                         <input type="text" class="form-control" placeholder="Seat Type"
-                                                            id="seat-type">
+                                                            id="seat-type-update">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="country" class="mb-2 form-label">Seat Number</label>
                                                         <input type="text" class="form-control" placeholder="Country"
-                                                            >
+                                                          id="seat-number-update"  >
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-end">
-                                                    <button class="btn sub-btn text-white" role="button"> Update </button>
+                                                    <button class="btn sub-btn text-white" type="submit"> Update </button>
                                                 </div>
                                             </div>
                                         </form>
