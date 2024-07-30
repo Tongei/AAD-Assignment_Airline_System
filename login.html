@@ -25,14 +25,14 @@
                         <div class="mb-3 d-flex flex-column align-items-start">
                             <label for="username" class="form-label">Username</label>
                             <div class="position-relative d-flex w-100 ">
-                                <input type="text" class="form-control ps-5" placeholder="Enter your username" id="username">
+                                <input required type="text" class="form-control ps-5" placeholder="Enter your username" id="username">
                                 <i class="fa-solid fa-envelope position-absolute"></i>
                             </div>
                         </div>
                         <div class=" mb-4 d-flex flex-column align-items-start">
                             <label for="password" class="form-label">Password</label>
                             <div class="position-relative d-flex w-100 ">
-                                <input type="text" class="form-control ps-5" placeholder="Enter your password" id="password">
+                                <input type="text" class="form-control ps-5" placeholder="Enter your password" id="password" required>
                                 <i class="fa-solid fa-lock position-absolute"></i>
                             </div>
                         </div>
@@ -95,63 +95,63 @@
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="airline-name" class="form-label">Airline Name</label>
-                                                <input type="text" id="airline-name" class="form-control"
+                                                <input type="text" id="airline-name" class="form-control" required
                                                     placeholder="AirLine Name">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="flight-id" class="form-label">Flight Number</label>
-                                                <input type="text" class="form-control" placeholder="FLight Number"
+                                                <input type="text" class="form-control" placeholder="FLight Number" required
                                                     id="flight-id">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="departure-at" class="form-label">Departure Airport</label>
-                                                <input type="text" class="form-control" placeholder="Departure At"
+                                                <input type="text" class="form-control" placeholder="Departure At" required
                                                     id="departure-at">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="departure-date" class="form-label">Departure Date</label>
-                                                <input type="text" class="form-control" placeholder="Departure Date"
+                                                <input type="text" class="form-control" placeholder="Departure Date" required
                                                     id="departure-date">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="arrival-at" class="form-label">Arrival Airport</label>
-                                                <input type="text" class="form-control" placeholder="Departure At"
+                                                <input type="text" class="form-control" placeholder="Departure At" required
                                                     id="arrival-at">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="arrival-date" class="form-label">Arrival Date</label>
-                                                <input type="text" class="form-control" placeholder="Arrival Date"
+                                                <input type="text" class="form-control" placeholder="Arrival Date" required
                                                     id="arrival-date">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="economy" class="form-label">Economy Seat</label>
-                                                <input type="text" class="form-control" placeholder="Economy Seat"
+                                                <input type="text" class="form-control" placeholder="Economy Seat" required
                                                     id="economy">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="business" class="form-label">Business Seat</label>
-                                                <input type="text" class="form-control" placeholder="Business Seat"
+                                                <input type="text" class="form-control" placeholder="Business Seat" required
                                                     id="business">
                                             </div>
                                         </div>
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="first-class" class="form-label">First Class Seat</label>
-                                                <input type="text" class="form-control" placeholder="First Class Seat"
+                                                <input type="text" class="form-control" placeholder="First Class Seat" required
                                                     id="first-class">
                                             </div>
                                         </div>
@@ -204,7 +204,7 @@
                                 <h3 class="border-0 m-0">Display Information</h3>
                                 <div class="mb-4 d-flex">
                                     <div class="position-relative d-flex align-items-center w-50">
-                                        <input type="text" class="form-control search"
+                                        <input type="text" class="form-control search" 
                                             placeholder="Enter flight id" id="searchInput">
                                         <i class="fa-solid fa-magnifying-glass position-absolute ms-2"></i>
                                     </div>
@@ -405,35 +405,35 @@
                                                 <div class="col-2">
                                                     <div class="mb-3">
                                                         <label for="last-name" class="mb-2 form-label">Passenger ID</label>
-                                                        <input type="text" class="form-control" placeholder="Passenger ID"
+                                                        <input type="text" class="form-control" placeholder="Passenger ID" required
                                                             id="passenger_id">
                                                     </div>
                                                 </div>
                                                 <div class="col-5">
                                                     <div class="mb-3">
                                                         <label for="first-name" class="mb-2 form-label">First Name</label>
-                                                        <input type="text" class="form-control" placeholder="First Name"
+                                                        <input type="text" required class="form-control" placeholder="First Name"
                                                             id="first-name">
                                                     </div>
                                                 </div>
                                                 <div class="col-5">
                                                     <div class="mb-3">
                                                         <label for="last-name" class="mb-2 form-label">Last Name</label>
-                                                        <input type="text" class="form-control" placeholder="Last Name"
+                                                        <input type="text" required class="form-control" placeholder="Last Name"
                                                             id="last-name">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="nationality" class="form-label">Nationality</label>
-                                                        <input type="text" class="form-control" placeholder="Nationality"
+                                                        <input type="text" required class="form-control" placeholder="Nationality"
                                                             id="nationality">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-3">
                                                         <label for="dob" class="mb-2 form-label">Date of Birth</label>
-                                                        <input type="text" class="form-control" placeholder="Date of Birth"
+                                                        <input type="text" required class="form-control" placeholder="Date of Birth"
                                                             id="dob">
                                                     </div>
                                                 </div>
@@ -453,13 +453,13 @@
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="email" class="mb-2 form-label">Email</label>
-                                                        <input type="email" class="form-control"
+                                                        <input type="email" class="form-control" required
                                                             placeholder="username@gmail.com" id="passenger_email">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
-                                                        <label for="phone" class="mb-2 form-label">Phone</label>
+                                                        <label for="phone" required class="mb-2 form-label">Phone</label>
                                                         <input type="tel" class="form-control" placeholder="(000) 000-000"
                                                             id="phone_number">
                                                     </div>
@@ -467,7 +467,7 @@
                                                 <div class="col-12">
                                                     <div class="mb-2">
                                                         <label for="address" class="mb-2 form-label">Address</label>
-                                                        <input type="text" class="form-control" placeholder="Address"
+                                                        <input type="text" required class="form-control" placeholder="Address"
                                                            id="passenger_address" >
                                                         <span class="form-text d-block">Street Address</span>
                                                     </div>
@@ -475,35 +475,35 @@
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="country" class="mb-2 form-label">Country</label>
-                                                        <input type="text" class="form-control" placeholder="Country"
+                                                        <input type="text" required class="form-control" placeholder="Country"
                                                             id="passenger_country">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="postal" class="mb-2 form-label">Postal/Zip Code</label>
-                                                        <input type="text" class="form-control"
+                                                        <input type="text" required class="form-control"
                                                             placeholder="Postal/Zip Code" id="postal">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="flight-id" class="mb-2 form-label">Flight ID</label>
-                                                        <input type="text" class="form-control" placeholder="Flight ID" disabled
+                                                        <input type="text" required class="form-control" placeholder="Flight ID" disabled
                                                             id="get_flight_id">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="seat-type" class="mb-2 form-label">Seat Type</label>
-                                                        <input type="text" class="form-control" placeholder="Seat Type"
+                                                        <input type="text" required class="form-control" placeholder="Seat Type"
                                                             id="passenger_seat_type">
                                                     </div>
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="mb-3">
                                                         <label for="country" class="mb-2 form-label">Seat Number</label>
-                                                        <input type="text" class="form-control" placeholder="Seat Number"
+                                                        <input type="text" required class="form-control" placeholder="Seat Number"
                                                             id="passenger_seat_number">
                                                     </div>
                                                 </div>
@@ -598,35 +598,35 @@
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="first-name" class="form-label">First Name</label>
-                                                        <input required type="text" id="pay_fn" placeholder="First name"
+                                                        <input required type="text" required id="pay_fn" placeholder="First name"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="last-name" class="form-label">First Name</label>
-                                                        <input required type="text" id="pay_ln" placeholder="Last name"
+                                                        <input required type="text" required id="pay_ln" placeholder="Last name"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="credit-card" class="form-label">Credit Card</label>
-                                                        <input required type="text" id="credit-card"
+                                                        <input required type="text" required id="credit-card"
                                                             placeholder="**** **** **** ****" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-3">
                                                         <label for="security-code" class="form-label">Security Code</label>
-                                                        <input required type="text" id="security-code" placeholder="CVV"
+                                                        <input required type="text" required id="security-code" placeholder="CVV"
                                                             class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-3">
                                                     <div class="mb-3">
                                                         <label for="expire-date" class="form-label">Security Code</label>
-                                                        <input required type="text" id="expire-date" placeholder="DD/MM/YY"
+                                                        <input required type="text" required id="expire-date" placeholder="DD/MM/YY"
                                                             class="form-control">
                                                     </div>
                                                 </div>

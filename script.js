@@ -84,15 +84,6 @@ function create_flight(event){
         }
         add_flight(v_flight_id, v_airline_name, v_departure_at, v_departure_date, v_arrival_at, v_arrival_date, v_economy_seat, v_business_seat, v_first_class_seat);
     }
-    // v_airline_name = '';
-    // v_flight_id = '';
-    // v_departure_at = '';
-    // v_departure_date = '';
-    // v_arrival_at = '';
-    // v_arrival_date = '';
-    // v_economy_seat = '';
-    // v_business_seat = '';
-    // v_first_class_seat = '';
 
     document.querySelector('#form_flight').reset();
 }
